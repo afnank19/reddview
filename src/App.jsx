@@ -4,8 +4,6 @@ import MediaGrid from "./components/shared/MediaGrid";
 import { GetImagesFromSubreddit } from "./api/subreddit";
 import SubredditSearch from "./components/shared/SubredditSearch";
 
-// Some brainstorming, each child has a data property
-// https://www.reddit.com/subreddits/search.json?q=bes&include_over_18=false
 function App() {
   const [searchTerm, setSearchTerm] = useState("Pics");
 
@@ -17,18 +15,18 @@ function App() {
   });
 
   if (isPending || isFetching) {
-    return <p>I be loading rn dont distrub</p>;
+    return <p>i be loading rn dont distrub</p>;
   }
 
   if (isError) {
-    return <p>I done fucked up</p>;
+    return (
+      <p>something went wrong | content not available | refresh to go back</p>
+    );
   }
 
   return (
     <>
-      <p className="bg-black text-white text-3xl text-center font-mono">
-        reddview - images from reddit
-      </p>
+      <p className="text-3xl font-mono ml-1">reddview - images from reddit</p>
       <SubredditSearch setSearchTerm={setSearchTerm} />
       <MediaGrid data={data} />
     </>

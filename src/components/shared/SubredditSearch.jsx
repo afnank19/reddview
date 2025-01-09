@@ -23,19 +23,21 @@ const SubredditSearch = ({ setSearchTerm }) => {
           setSearchQuery(e.target.value);
         }}
         onKeyDown={(e) => {
-          if (e.key === "Enter") {
+          if (e.key === "Enter" && searchQuery != "") {
             refetch();
           }
         }}
-        placeholder="Search"
-        className="bg-black text-white p-1 m-1 rounded-lg"
+        placeholder="search and enter"
+        className="bg-[#251d2e] p-1 m-1 rounded-lg ml-2"
       ></input>
       {isFetching ? (
-        <p>Loading</p>
+        <div className=" absolute left-0 right-0 mt-2 bg-[#251d2e] rounded-md shadow-lg max-h-60 overflow-y-auto m-2 max-w-max px-2 flex flex-col items-start gap-1">
+          <p>Loading</p>
+        </div>
       ) : isError ? (
         <p>An error occured</p>
       ) : (
-        <div className="absolute left-0 right-0 mt-2 bg-slate-100 rounded-md shadow-lg max-h-60 overflow-y-auto m-2 max-w-max px-2 flex flex-col items-start gap-1">
+        <div className="absolute left-0 right-0 mt-2 bg-[#251d2e] rounded-md shadow-lg max-h-60 overflow-y-auto m-2 max-w-max px-2 flex flex-col items-start gap-1">
           {data?.map((subreddit, index) => {
             return (
               <button
